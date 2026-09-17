@@ -1,0 +1,542 @@
+/* ─── Page Shell ────────────────────────────────────────────── */
+
+.page {
+  min-height: 100svh;
+  padding: 1.5rem var(--page-gutter) 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-x: hidden;
+}
+
+/* ─── Integrated Architectural Header ───────────────────────── */
+
+.header {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  padding: 0.85rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  border: 1px solid rgba(233, 184, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(18, 10, 24, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 35px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px) saturate(145%);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.identity {
+  position: relative;
+  z-index: 2;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+
+.identity:hover {
+  color: var(--color-lilac);
+}
+
+.desktopNav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+}
+
+.mobileMenu {
+  position: relative;
+  z-index: 2;
+  display: none;
+}
+
+.menuButton {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(233, 184, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(18, 10, 24, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  cursor: pointer;
+  transition: border-color 180ms ease;
+}
+
+.menuButton:hover,
+.menuButton:focus-visible {
+  border-color: var(--color-lilac);
+}
+
+.stepsIcon {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.stepsBar {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    background-color 180ms ease;
+}
+
+.stepTop {
+  width: 22px;
+}
+
+.stepMid {
+  width: 17px;
+}
+
+.stepBottom {
+  width: 12px;
+}
+
+.stepTop,
+.stepMid,
+.stepBottom {
+  background-color: #f02bff;
+}
+
+.menuButton:hover .stepsBar,
+.menuButton:focus-visible .stepsBar {
+  background-color: #e9b8ff;
+}
+
+.menuButton[aria-expanded="true"] .stepsBar {
+  background-color: #f02bff;
+}
+
+.menuButton[aria-expanded="true"] .stepTop {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuButton[aria-expanded="true"] .stepMid {
+  transform: translateX(8px);
+  opacity: 0;
+}
+
+.menuButton[aria-expanded="true"] .stepBottom {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.menuDropdown {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  min-width: 12.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(233, 184, 255, 0.16);
+  border-radius: 1rem;
+  background: rgba(18, 10, 24, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 35px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px) saturate(145%);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+  z-index: 20;
+}
+
+.menuDropdown ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.menuDropdown a {
+  display: block;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.menuDropdown a:hover,
+.menuDropdown a:focus-visible {
+  color: #f02bff;
+  background: rgb(240 43 255 / 8%);
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.75rem);
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.navigation a {
+  transition: color 180ms ease;
+}
+
+.navigation a:hover,
+.navigation a:focus-visible {
+  color: #f02bff;
+}
+
+/* ─── Hero / Main Grid ──────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: min(100%, var(--content-width));
+  margin-inline: auto;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  column-gap: clamp(1rem, 2.2vw, 2.5rem);
+  padding: clamp(2.5rem, 6vh, 5rem) 0 1rem;
+}
+
+/* ─── Unified Left Composition ──────────────────────────────── */
+
+.textComposition {
+  grid-column: 1 / 8;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+}
+
+.eyebrow {
+  margin-bottom: clamp(1.5rem, 3.5vh, 2.75rem);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-lilac);
+  opacity: 0.72;
+}
+
+.heading {
+  font-size: clamp(2.6rem, 5.4vw, 5.6rem);
+  font-weight: 480;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+  color: var(--color-text);
+  margin-bottom: clamp(2rem, 4.5vh, 3.25rem);
+}
+
+.headingLine {
+  display: block;
+}
+
+.headingIndent {
+  display: block;
+  margin-left: clamp(1.25rem, 3.8vw, 4.25rem);
+  margin-top: 0.12em;
+  white-space: nowrap;
+}
+
+.period {
+  color: var(--color-magenta);
+}
+
+/* ─── Supporting Copy & Link ────────────────────────────────── */
+
+.supportingComposition {
+  margin-left: clamp(1.25rem, 3.8vw, 4.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 24rem;
+}
+
+.supporting {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.workLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  width: fit-content;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-magenta);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text);
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.workLink:hover,
+.workLink:focus-visible {
+  color: var(--color-magenta);
+  border-color: var(--color-lilac);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 180ms ease;
+}
+
+.workLink:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ─── Approved Hero Asset (Ribbon + Butterflies PNG) ────────── */
+
+.artworkWrap {
+  position: absolute;
+  grid-column: auto;
+  grid-row: auto;
+  top: 49%;
+  right: clamp(-12rem, -8vw, -6rem);
+  transform: translateY(-48%);
+  width: clamp(58rem, 64vw, 78rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  overflow: visible;
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ─── Process Tagline ───────────────────────────────────────── */
+
+.process {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(1.5rem, 3vh, 3.5rem);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.68;
+}
+
+/* ─── Desktop Typography Refinement ─────────────────────────── */
+
+@media (min-width: 901px) {
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    opacity: 0.78;
+  }
+
+  .heading {
+    width: 62vw;
+    font-size: clamp(4.8rem, 5.8vw, 7rem);
+    font-weight: 650;
+    line-height: 0.88;
+    letter-spacing: -0.055em;
+  }
+
+  .headingLine,
+  .headingIndent {
+    white-space: nowrap;
+  }
+
+  .supportingComposition {
+    margin-left: 0;
+  }
+
+  .supporting {
+    font-size: clamp(1.05rem, 1.25vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
+    max-width: 31ch;
+  }
+
+  .workLink {
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1;
+  }
+
+  .identity {
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+  }
+
+  .navigation {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .process {
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    opacity: 0.58;
+  }
+}
+
+/* ─── Responsive (Tablet) ───────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    padding-top: clamp(1.5rem, 4vh, 2.5rem);
+    gap: 2rem;
+  }
+
+  .textComposition {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .heading {
+    font-size: clamp(2.4rem, 9.5vw, 3.8rem);
+    line-height: 0.96;
+    margin-bottom: 1.75rem;
+  }
+
+  .headingIndent {
+    margin-left: 0;
+    white-space: normal;
+  }
+
+  .supportingComposition {
+    margin-left: 0;
+    gap: 1.25rem;
+  }
+
+  .artworkWrap {
+    position: static;
+    grid-column: 1;
+    grid-row: 2;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: min(88vw, 50rem);
+    margin-inline: auto;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .heroImage {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+
+  .process {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* ─── Responsive (Mobile) ───────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .page {
+    padding: 0.85rem var(--page-gutter) 1.25rem;
+  }
+
+  .header {
+    padding: 0.65rem 1.15rem;
+    gap: 1rem;
+  }
+
+  .identity {
+    font-size: 0.72rem;
+  }
+
+  .desktopNav {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .heading {
+    font-size: clamp(2.1rem, 10.5vw, 3rem);
+  }
+
+  .supporting {
+    font-size: 0.92rem;
+  }
+
+  .artworkWrap {
+    grid-row: 3;
+    width: min(135vw, 34rem);
+    margin-left: 22vw;
+    margin-right: 0;
+    justify-content: flex-start;
+    transform: translateX(6vw);
+    padding: 0 0 0.5rem;
+  }
+
+  .heroImage {
+    width: 100%;
+    max-width: none;
+    max-height: none;
+  }
+
+  .process {
+    grid-row: 4;
+    margin-top: 0.75rem;
+  }
+}
