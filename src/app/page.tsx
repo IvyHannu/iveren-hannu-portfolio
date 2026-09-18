@@ -1,65 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 
 import SiteHeader from "../components/SiteHeader";
 import styles from "./page.module.css";
-
-function HeroArtwork() {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div className={styles.artworkWrap} aria-hidden="true">
-      {!reduceMotion && (
-        <motion.div
-          className={styles.artworkGlow}
-          animate={{
-            x: [-12, 12, -12],
-            y: [-8, 8, -8],
-            opacity: [0.05, 0.09, 0.05],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      )}
-
-      <div className={styles.artworkInner}>
-        <motion.div
-          className={styles.artworkMotion}
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                x: [-2, 2, -2],
-                y: [-4, 4, -4],
-                rotate: [-0.25, 0.25, -0.25],
-              }
-          }
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Image
-            className={styles.heroImage}
-            src="/hero-ribbon-butterflies.png"
-            alt=""
-            width={1536}
-            height={1024}
-            priority
-            sizes="(max-width: 600px) 96vw, (max-width: 900px) 88vw, 48vw"
-          />
-        </motion.div>
-      </div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
@@ -100,7 +45,17 @@ export default function Home() {
           </div>
         </div>
 
-        <HeroArtwork />
+        <div className={styles.artworkWrap} aria-hidden="true">
+          <Image
+            className={styles.heroImage}
+            src="/hero-ribbon-butterflies.png"
+            alt=""
+            width={1536}
+            height={1024}
+            priority
+            sizes="(max-width: 600px) 96vw, (max-width: 900px) 88vw, 48vw"
+          />
+        </div>
 
         <p className={styles.process}>
           Think. Design. Build.
