@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import styles from "../app/page.module.css";
 
 const navigation = [
@@ -12,72 +14,123 @@ const navigation = [
 ] as const;
 
 export default function SiteHeader() {
+  const pathname = usePathname();
+
   const [menuOpen, setMenuOpen] = useState(false);
+
   const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
 
     const onPointerDown = (event: PointerEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
         setMenuOpen(false);
       }
     };
 
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("pointerdown", onPointerDown);
+
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
     };
   }, [menuOpen]);
 
+  const isActive = (href: string) => pathname === href;
+
   return (
     <header className={styles.header}>
-      <Link className={styles.identity} href="/" aria-label="Iveren Hannu, home">
+      <Link
+        className={styles.identity}
+        href="/"
+        aria-label="Iveren Hannu, home"
+      >
         Iveren Hannu
       </Link>
 
-      <nav aria-label="Primary navigation" className={styles.desktopNav}>
+      <nav
+        aria-label="Primary navigation"
+        className={styles.desktopNav}
+      >
         <ul className={styles.navigation}>
-          {navigation.map(([label, href]) => (
-            <li key={href}>
-              <Link href={href}>{label}</Link>
-            </li>
-          ))}
+          {navigation.map(([label, href]) => {
+            const active = isActive(href);
+
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
       <div className={styles.mobileMenu} ref={menuRef}>
         <button
+          ref={menuButtonRef}
           type="button"
           className={styles.menuButton}
-          aria-label="Open navigation"
+          aria-label={
+            menuOpen ? "Close navigation" : "Open navigation"
+          }
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span className={styles.stepsIcon} aria-hidden="true">
-            <span className={`${styles.stepsBar} ${styles.stepTop}`} />
-            <span className={`${styles.stepsBar} ${styles.stepMid}`} />
-            <span className={`${styles.stepsBar} ${styles.stepBottom}`} />
+            <span
+              className={`${styles.stepsBar} ${styles.stepTop}`}
+            />
+            <span
+              className={`${styles.stepsBar} ${styles.stepMid}`}
+            />
+            <span
+              className={`${styles.stepsBar} ${styles.stepBottom}`}
+            />
           </span>
         </button>
 
         {menuOpen && (
-          <div id="mobile-menu" className={styles.menuDropdown}>
+          <div
+            id="mobile-menu"
+            className={styles.menuDropdown}
+          >
             <ul>
-              {navigation.map(([label, href]) => (
-                <li key={href}>
-                  <Link href={href} onClick={() => setMenuOpen(false)}>
-                    {label}
-                  </Link>
-                </li>
-              ))}
+              {navigation.map(([label, href]) => {
+                const active = isActive(href);
+
+                return (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      aria-current={
+                        active ? "page" : undefined
+                      }
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}

@@ -1,98 +1,86 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+
+import SiteHeader from "../components/SiteHeader";
 import styles from "./page.module.css";
 
-const navigation = [
-  ["Work", "/work"],
-  ["Writing", "/writing"],
-  ["About", "/about"],
-  ["Contact", "/contact"],
-] as const;
-
-export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-
-    const onPointerDown = (event: PointerEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("pointerdown", onPointerDown);
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("pointerdown", onPointerDown);
-    };
-  }, [menuOpen]);
+function HeroArtwork() {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <main className={styles.page}>
-      <header className={styles.header}>
-        <Link className={styles.identity} href="/" aria-label="Iveren Hannu, home">
-          Iveren Hannu
-        </Link>
+    <div className={styles.artworkWrap} aria-hidden="true">
+      {!reduceMotion && (
+        <motion.div
+          className={styles.artworkGlow}
+          animate={{
+            x: [-12, 12, -12],
+            y: [-8, 8, -8],
+            opacity: [0.05, 0.09, 0.05],
+          }}
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
 
-        <nav aria-label="Primary navigation" className={styles.desktopNav}>
-          <ul className={styles.navigation}>
-            {navigation.map(([label, href]) => (
-              <li key={href}>
-                <Link href={href}>{label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div className={styles.artworkInner}>
+        <motion.div
+          className={styles.artworkMotion}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                x: [-2, 2, -2],
+                y: [-4, 4, -4],
+                rotate: [-0.25, 0.25, -0.25],
+              }
+          }
+          transition={{
+            duration: 14,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <Image
+            className={styles.heroImage}
+            src="/hero-ribbon-butterflies.png"
+            alt=""
+            width={1536}
+            height={1024}
+            priority
+            sizes="(max-width: 600px) 96vw, (max-width: 900px) 88vw, 48vw"
+          />
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 
-        <div className={styles.mobileMenu} ref={menuRef}>
-          <button
-            type="button"
-            className={styles.menuButton}
-            aria-label="Open navigation"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span className={styles.stepsIcon} aria-hidden="true">
-              <span className={`${styles.stepsBar} ${styles.stepTop}`} />
-              <span className={`${styles.stepsBar} ${styles.stepMid}`} />
-              <span className={`${styles.stepsBar} ${styles.stepBottom}`} />
-            </span>
-          </button>
-
-          {menuOpen && (
-            <div id="mobile-menu" className={styles.menuDropdown}>
-              <ul>
-                {navigation.map(([label, href]) => (
-                  <li key={href}>
-                    <Link href={href} onClick={() => setMenuOpen(false)}>
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </header>
+export default function Home() {
+  return (
+    <main className={`${styles.page} ${styles.pageHome}`}>
+      <SiteHeader />
 
       <section className={styles.hero} aria-labelledby="hero-heading">
         <div className={styles.textComposition}>
-          <p className={styles.eyebrow}>Product Designer · UI/UX + Build</p>
+          <p className={styles.eyebrow}>
+            Product Designer · UI/UX + Build
+          </p>
 
           <h1 id="hero-heading" className={styles.heading}>
-            <span className={styles.headingLine}>I don&apos;t hand off</span>
-            <span className={styles.headingLine}>designs.</span>
+            <span className={styles.headingLine}>
+              I don&apos;t hand off
+            </span>
+
+            <span className={styles.headingLine}>
+              designs.
+            </span>
+
             <span className={styles.headingLine}>
               I finish them<span className={styles.period}>.</span>
             </span>
@@ -102,25 +90,21 @@ export default function Home() {
             <p className={styles.supporting}>
               I design clear digital products, then help bring them to life.
             </p>
+
             <Link className={styles.workLink} href="/work">
-              Enter Work <span aria-hidden="true" className={styles.arrow}>↗</span>
+              Enter Work
+              <span aria-hidden="true" className={styles.arrow}>
+                ↗
+              </span>
             </Link>
           </div>
         </div>
 
-        <div className={styles.artworkWrap} aria-hidden="true">
-          <Image
-            className={styles.heroImage}
-            src="/hero-ribbon-butterflies.png"
-            alt=""
-            width={1536}
-            height={1024}
-            priority
-            sizes="(max-width: 600px) 135vw, (max-width: 900px) 88vw, 48vw"
-          />
-        </div>
+        <HeroArtwork />
 
-        <p className={styles.process}>Think. Design. Build.</p>
+        <p className={styles.process}>
+          Think. Design. Build.
+        </p>
       </section>
     </main>
   );
