@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import SiteHeader from "../../components/SiteHeader";
 import styles from "./contact.module.css";
 
@@ -14,44 +13,28 @@ const socials = [
 
 const butterflies = [
   {
-    x: 24,
-    y: 16,
-    size: 14,
-    rotate: -28,
-    delay: 780,
-    duration: 14,
-    drift: 9,
-    tilt: 5,
+    x: 55,
+    y: 22,
+    size: 20,
+    rotate: -32,
   },
   {
-    x: 38,
-    y: 30,
-    size: 21,
-    rotate: -18,
-    delay: 520,
-    duration: 12.5,
-    drift: 11,
-    tilt: 4,
+    x: 78,
+    y: 15,
+    size: 16,
+    rotate: -12,
   },
   {
-    x: 58,
-    y: 51,
-    size: 29,
-    rotate: -10,
-    delay: 260,
-    duration: 11,
-    drift: 13,
-    tilt: 3.5,
+    x: 88,
+    y: 48,
+    size: 30,
+    rotate: -6,
   },
   {
-    x: 77,
-    y: 69,
-    size: 46,
-    rotate: -4,
-    delay: 0,
-    duration: 9.5,
-    drift: 16,
-    tilt: 2.5,
+    x: 65,
+    y: 68,
+    size: 38,
+    rotate: -22,
   },
 ];
 
@@ -115,9 +98,9 @@ function Butterfly({ index }: { index: number }) {
   );
 }
 
-function FlightPath() {
+function ButterflyCluster() {
   return (
-    <span className={styles.artwork} aria-hidden="true">
+    <div className={styles.artwork} aria-hidden="true">
       {butterflies.map((butterfly, index) => (
         <span
           key={`${butterfly.x}-${butterfly.y}`}
@@ -128,20 +111,15 @@ function FlightPath() {
               "--y": `${butterfly.y}%`,
               "--size": `${butterfly.size}%`,
               "--base-rotate": `${butterfly.rotate}deg`,
-              "--in-delay": `${butterfly.delay}ms`,
-              "--float-duration": `${butterfly.duration}s`,
-              "--float-delay": `${butterfly.delay + 900}ms`,
-              "--drift": `${butterfly.drift}px`,
-              "--tilt": `${butterfly.tilt}deg`,
-            } as CSSProperties
+            } as React.CSSProperties
           }
         >
-          <span className={styles.butterflyFloat}>
+          <span className={styles.butterflyInner}>
             <Butterfly index={index} />
           </span>
         </span>
       ))}
-    </span>
+    </div>
   );
 }
 
@@ -153,30 +131,20 @@ export default function ContactPage() {
       <div className={styles.content}>
         <div className={styles.grid}>
           <section className={styles.left} aria-labelledby="contact-heading">
-            <p
-              className={`${styles.label} ${styles.reveal}`}
-              style={{ "--reveal-delay": "0ms" } as CSSProperties}
-            >
-              Contact / Let’s Talk
+            <p className={styles.label}>
+              Contact / Let&apos;s Talk
             </p>
 
-            <h1
-              id="contact-heading"
-              className={`${styles.headline} ${styles.reveal}`}
-              style={{ "--reveal-delay": "80ms" } as CSSProperties}
-            >
+            <h1 id="contact-heading" className={styles.headline}>
               <span className={styles.headlineLine}>
                 Have something worth building?
               </span>
               <span className={styles.headlineLine}>
-                Let’s talk<span className={styles.period}>.</span>
+                Let&apos;s talk<span className={styles.period}>.</span>
               </span>
             </h1>
 
-            <div
-              className={`${styles.emailBlock} ${styles.reveal}`}
-              style={{ "--reveal-delay": "160ms" } as CSSProperties}
-            >
+            <div className={styles.emailBlock}>
               <a className={styles.emailLink} href={`mailto:${EMAIL}`}>
                 <span className={styles.emailText}>{EMAIL}</span>
                 <span className={styles.emailArrow} aria-hidden="true">
@@ -185,18 +153,11 @@ export default function ContactPage() {
               </a>
             </div>
 
-            <p
-              className={`${styles.supporting} ${styles.reveal}`}
-              style={{ "--reveal-delay": "240ms" } as CSSProperties}
-            >
+            <p className={styles.supporting}>
               Open to thoughtful product work, collaborations and conversations.
             </p>
 
-            <nav
-              aria-label="Elsewhere"
-              className={`${styles.socialsWrap} ${styles.reveal}`}
-              style={{ "--reveal-delay": "320ms" } as CSSProperties}
-            >
+            <nav aria-label="Elsewhere" className={styles.socialsWrap}>
               <ul className={styles.socials}>
                 {socials.map((social) => (
                   <li key={social.label}>
@@ -217,11 +178,8 @@ export default function ContactPage() {
             </nav>
           </section>
 
-          <div
-            className={`${styles.visual} ${styles.reveal}`}
-            style={{ "--reveal-delay": "200ms" } as CSSProperties}
-          >
-            <FlightPath />
+          <div className={styles.visual}>
+            <ButterflyCluster />
           </div>
         </div>
       </div>

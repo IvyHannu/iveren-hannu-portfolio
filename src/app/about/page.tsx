@@ -31,7 +31,7 @@ function Portrait() {
     <div className={styles.portrait}>
       {!failed && (
         <Image
-          src="/about/iveren-hannu.jpg"
+          src="/iveren-hannu.jpg"
           alt="Portrait of Iveren Hannu"
           fill
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 80vw, 36vw"
@@ -44,7 +44,7 @@ function Portrait() {
         <div className={styles.portraitPlaceholder}>
           <span className={styles.placeholderLabel}>Portrait</span>
           <span className={styles.placeholderPath}>
-            Add public/about/iveren-hannu.jpg
+            Add public/iveren-hannu.jpg
           </span>
         </div>
       )}
@@ -93,14 +93,14 @@ export default function AboutPage() {
         </section>
 
         <section className={styles.career} aria-label="Career path">
-          <ol className={styles.path}>
+          <ul className={styles.path}>
             {careerPath.map((stage) => (
               <li key={stage} className={styles.pathStage}>
                 <span className={styles.pathMarker} aria-hidden="true" />
                 <span className={styles.pathLabel}>{stage}</span>
               </li>
             ))}
-          </ol>
+          </ul>
         </section>
       </div>
     </main>

@@ -164,7 +164,7 @@ function ProjectStage({ project }: { project: Project }) {
           <dt>Project</dt>
           <dd>{project.title}</dd>
         </div>
-        <div className={`${styles.metaCell} ${styles.metaCellWide}`}>
+        <div className={styles.metaCell}>
           <dt>Role</dt>
           <dd>{project.role}</dd>
         </div>
@@ -172,7 +172,7 @@ function ProjectStage({ project }: { project: Project }) {
           <dt>Year</dt>
           <dd>{project.year}</dd>
         </div>
-        <div className={`${styles.metaCell} ${styles.metaCellLinks}`}>
+        <div className={styles.metaCell}>
           <dt>Links</dt>
           <dd className={styles.linkRow}>
             {project.links.map((link) => (
@@ -335,7 +335,7 @@ export default function WorkPage() {
                       id={`m-panel-${project.id}`}
                       role="region"
                       aria-labelledby={`m-tab-${project.id}`}
-                      className={styles.accordionPanel}
+                      className={`${styles.accordionPanel} ${open ? styles.accordionPanelOpen : ""}`}
                     >
                       {open && <ProjectStage project={project} />}
                     </div>
@@ -361,7 +361,7 @@ export default function WorkPage() {
                       id={`tab-${project.id}`}
                       className={styles.projectTab}
                       aria-selected={selected}
-                      aria-controls={`panel-${project.id}`}
+                      aria-controls="panel-work-project"
                       tabIndex={selected ? 0 : -1}
                       onClick={() => setActive(project.id)}
                       onMouseEnter={() => setActive(project.id)}
@@ -377,7 +377,7 @@ export default function WorkPage() {
               <div
                 className={styles.viewer}
                 role="tabpanel"
-                id={`panel-${activeProject.id}`}
+                id="panel-work-project"
                 aria-labelledby={`tab-${activeProject.id}`}
                 tabIndex={0}
               >

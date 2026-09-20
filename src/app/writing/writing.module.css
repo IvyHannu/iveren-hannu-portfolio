@@ -453,3 +453,110 @@
     align-items: flex-start;
   }
 }
+
+/* ─── Mobile/Tablet Accordion ─────────────────────────────────── */
+
+.accordion {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-line);
+}
+
+.accordionItem {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.accordionHeading {
+  margin: 0;
+  font: inherit;
+}
+
+.accordionButton {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1rem, 4vw, 1.4rem) 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.accordionButton:hover,
+.accordionButton:focus-visible {
+  color: var(--color-magenta);
+}
+
+.accordionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.accordionTitle {
+  flex: 1 1 100%;
+  font-family: var(--font-sans);
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  font-weight: 550;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-text);
+  transition: color 180ms ease;
+}
+
+.accordionButton:hover .accordionTitle,
+.accordionButton:focus-visible .accordionTitle {
+  color: var(--color-magenta);
+}
+
+.accordionMark {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--color-violet);
+  margin-top: -0.2rem;
+}
+
+.accordionPanel {
+}
+
+.accordionPanelOpen {
+  padding-bottom: clamp(1.5rem, 5vw, 2.25rem);
+}
+
+@media (max-width: 900px) {
+  .accordionButton {
+    padding: clamp(1rem, 3vw, 1.3rem) 0;
+  }
+
+  .accordionTitle {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+
+  .accordionMeta {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .accordionButton {
+    padding: clamp(0.9rem, 3.5vw, 1.2rem) 0;
+  }
+
+  .accordionTitle {
+    font-size: clamp(1.25rem, 6vw, 1.8rem);
+  }
+}

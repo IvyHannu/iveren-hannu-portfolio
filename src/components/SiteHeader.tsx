@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import styles from "../app/page.module.css";
+import styles from "./SiteHeader.module.css";
 
 const navigation = [
   ["Work", "/work"],
@@ -52,7 +52,7 @@ export default function SiteHeader() {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} style={{ backdropFilter: "blur(38px)" }}>
       <Link
         className={styles.identity}
         href="/"
@@ -88,6 +88,7 @@ export default function SiteHeader() {
           ref={menuButtonRef}
           type="button"
           className={styles.menuButton}
+          style={{ backdropFilter: "blur(30px)" }}
           aria-label={
             menuOpen ? "Close navigation" : "Open navigation"
           }
