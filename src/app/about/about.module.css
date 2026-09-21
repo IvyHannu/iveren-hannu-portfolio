@@ -335,8 +335,15 @@
   stroke: var(--color-magenta);
 }
 
-/* Boxes: one connector accent (strongest — final stage) */
-.pathIcon svg path:nth-child(12) {
+/* Boxes: active/current stage — strong magenta presence */
+.pathIcon svg path:nth-child(6),
+.pathIcon svg path:nth-child(7),
+.pathIcon svg path:nth-child(8),
+.pathIcon svg path:nth-child(9),
+.pathIcon svg path:nth-child(10),
+.pathIcon svg path:nth-child(11),
+.pathIcon svg path:nth-child(12),
+.pathIcon svg path:nth-child(13) {
   stroke: var(--color-magenta);
 }
 
