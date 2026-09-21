@@ -314,8 +314,32 @@
   height: 50px;
 }
 
-.pathIcon svg path:last-child,
-.pathIcon svg line:last-child {
+/* Drama: one mask face magenta */
+.pathIcon svg path:nth-child(7) {
+  stroke: var(--color-magenta);
+}
+
+/* Users: second person magenta */
+.pathIcon svg path:nth-child(3),
+.pathIcon svg circle {
+  stroke: var(--color-magenta);
+}
+
+/* Clipboard-list: dots magenta */
+.pathIcon svg path:nth-child(5),
+.pathIcon svg path:nth-child(6) {
+  stroke: var(--color-magenta);
+}
+
+/* Monitor: stand magenta */
+.pathIcon svg line:nth-child(3) {
+  stroke: var(--color-magenta);
+}
+
+/* Boxes: one box magenta */
+.pathIcon svg path:nth-child(7),
+.pathIcon svg path:nth-child(8),
+.pathIcon svg path:nth-child(9) {
   stroke: var(--color-magenta);
 }
 
