@@ -142,7 +142,7 @@ export default function AboutPage() {
         </section>
 
         <section className={styles.career} aria-label="Career path">
-          <p className={styles.pathHeading}>MY CAREER PATH</p>
+          <p className={styles.pathLabel}>MY CAREER PATH</p>
           <ul className={styles.path}>
             {careerPath.map((stage) => (
               <li key={stage.label} className={styles.pathStage}>

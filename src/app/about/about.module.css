@@ -35,15 +35,15 @@
 /* ─── Hero: three-column editorial layout ───────────────────── */
 
 .hero {
-  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.25fr) minmax(0, 0.9fr);
   column-gap: clamp(1.5rem, 3.5vw, 4rem);
-  align-items: stretch;
+  align-items: start;
 }
 
 .left::after,
-.middle::after {
+.middle::after,
+.right::before {
   content: "";
   position: absolute;
   top: 0;
@@ -53,12 +53,13 @@
   opacity: 0.4;
 }
 
-.left::after {
-  right: calc(-1 * clamp(1.5rem, 3.5vw, 4rem) / 2 + 0.75rem);
+.left::after,
+.middle::after {
+  right: calc(-1 * clamp(1.5rem, 3.5vw, 4rem) / 2);
 }
 
-.middle::after {
-  right: calc(-1 * clamp(1.5rem, 3.5vw, 4rem) / 2 - 1rem);
+.right::before {
+  left: calc(-1 * clamp(1.5rem, 3.5vw, 4rem) / 2);
 }
 
 /* ─── LEFT: Eyebrow + Headline + Intro ──────────────────────── */
@@ -67,6 +68,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-width: 0;
 }
 
@@ -116,6 +118,12 @@
 
 /* ─── MIDDLE: My Story ───────────────────────────────────────── */
 
+.middle {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
 .sectionLabel {
   font-family: var(--font-mono);
   font-size: 0.62rem;
@@ -156,27 +164,24 @@
 
 .right {
   min-width: 0;
-  width: calc(100% + var(--page-gutter) - 0.5rem);
-  align-self: stretch;
+  padding-top: clamp(3rem, 10vh, 6rem);
 }
 
 .portrait {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: clamp(32rem, 64vh, 40rem);
+  min-height: clamp(30rem, 60vh, 40rem);
   overflow: hidden;
   background: transparent;
-  mask-image: linear-gradient(to bottom, transparent, #000 3% 96%, transparent);
 }
 
 .portraitImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% center;
-  transform: scale(0.97);
-  filter: grayscale(0.1) contrast(1.12) brightness(0.94) sepia(0.03);
+  object-position: center 38%;
+  filter: grayscale(0.55) contrast(1.05) brightness(0.95) sepia(0.02);
 }
 
 .portraitEdge {
@@ -185,9 +190,9 @@
   pointer-events: none;
   background: linear-gradient(
     105deg,
-    rgb(245 240 232 / 2%),
-    transparent 12% 88%,
-    rgb(233 184 255 / 2%)
+    rgb(245 240 232 / 5%),
+    transparent 15% 85%,
+    rgb(233 184 255 / 3%)
   );
 }
 
@@ -195,7 +200,11 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, var(--color-background), transparent 8% 94%, var(--color-background));
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 35%,
+    transparent 45%,
+    rgb(14 12 16 / 70%) 100%
+  );
 }
 
 .portraitPlaceholder {
@@ -243,7 +252,7 @@
   margin-top: clamp(0.5rem, 1vh, 1rem);
 }
 
-.pathHeading {
+.pathLabel {
   font-family: var(--font-mono);
   font-size: 0.6rem;
   font-weight: 500;
@@ -273,17 +282,7 @@
   padding: 0 1.5rem;
 }
 
-.pathStage:not(:last-child)::after {
-  content: "→";
-  position: absolute;
-  top: 1.15rem;
-  right: -0.4rem;
-  color: var(--color-lilac);
-  opacity: 0.7;
-  font-family: var(--font-mono);
-  font-size: 1.25rem;
-  line-height: 1;
-}
+
 
 .pathIconWrapper {
   position: relative;
@@ -304,13 +303,8 @@
 }
 
 .pathIcon svg {
-  width: 48px;
-  height: 48px;
-}
-
-.pathIcon svg path:last-child,
-.pathIcon svg line:last-child {
-  stroke: var(--color-magenta);
+  width: 50px;
+  height: 50px;
 }
 
 .pathAccent {
@@ -318,6 +312,7 @@
   height: 7px;
   border-radius: 50%;
   background: var(--color-magenta);
+  box-shadow: 0 0 10px rgb(240 43 255 / 55%);
 }
 
 .pathLabel {
@@ -330,17 +325,22 @@
   text-align: center;
 }
 
+.pathStage:last-child .pathAccent {
+  background: var(--color-magenta);
+  box-shadow: 0 0 14px rgb(240 43 255 / 70%);
+}
+
+.pathStage:last-child .pathAccent {
+  background: var(--color-magenta);
+  box-shadow: 0 0 14px rgb(240 43 255 / 70%);
+}
+
 /* ─── Responsive (Tablet) ───────────────────────────────────── */
 
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
     row-gap: clamp(2.5rem, 6vh, 3.5rem);
-  }
-
-  .left::after,
-  .middle::after {
-    display: none;
   }
 
   .headline {
@@ -361,14 +361,13 @@
   }
 
   .right {
-    width: min(100%, 34rem);
+    width: min(100%, 28rem);
     margin-inline: auto;
+    padding-top: 0;
   }
 
   .portrait {
-    height: auto;
-    min-height: 0;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 5.5;
   }
 
   .sectionLabel {
@@ -414,18 +413,27 @@
     grid-auto-columns: auto;
   }
 
+  .path::before {
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+
   .pathStage {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
-    padding: 0.7rem 0 1.1rem;
+    padding: 0.7rem 0;
   }
 
-  .pathStage:not(:last-child)::after {
-    content: "↓";
-    top: auto;
-    right: auto;
-    bottom: -0.35rem;
-    left: 1rem;
+  .pathMarker {
+    flex: none;
+  }
+
+  .right {
+    padding-top: 0;
   }
 }
