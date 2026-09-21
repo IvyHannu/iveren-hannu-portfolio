@@ -10,9 +10,10 @@ const careerPath = [
     label: "Theatre Arts",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M14 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V3c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v.73c.6-.34 1-.99 1-1.73A2 2 0 0 1 14 2Z" />
-        <path d="M10 22a2 2 0 0 1-2-2c0-.74.4-1.39 1-1.73V17c0-.55.45-1 1-1h6c.55 0 1 .45 1 1v2.27c.6.34 1 .99 1 1.73a2 2 0 0 1-2 2h-8Z" />
-        <line x1="12" x2="12" y1="4" y2="20" strokeWidth="1.25" />
+        <path d="M18 17a2 2 0 0 0-1.58-1.93 4 4 0 0 0-7.85-.33A2 2 0 0 0 6 17" />
+        <path d="M6 17v-3a4 4 0 0 1 8 0v3" />
+        <circle cx="9" cy="10" r="1" />
+        <circle cx="15" cy="10" r="1" />
       </svg>
     ),
   },
@@ -31,8 +32,12 @@ const careerPath = [
     label: "Project Management",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M9 11l3 3L22 4" />
-        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" />
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M9 9h6" />
+        <path d="M9 13h6" />
+        <path d="M9 17h4" />
+        <path d="M12 3v2" />
+        <path d="M12 19v2" />
       </svg>
     ),
   },
@@ -52,14 +57,10 @@ const careerPath = [
     label: "Product + Build",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="2" y="2" width="7" height="7" rx="1" />
-        <rect x="15" y="2" width="7" height="7" rx="1" />
-        <rect x="2" y="15" width="7" height="7" rx="1" />
-        <rect x="15" y="15" width="7" height="7" rx="1" />
-        <path d="M9 5.5v13" />
-        <path d="M14.5 9h5" />
-        <path d="M5.5 14h13" />
-        <path d="M9 18.5v-5" />
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+        <path d="M9 3v14" />
+        <path d="M5 9h14" />
+        <path d="M15 3v14" />
       </svg>
     ),
   },
