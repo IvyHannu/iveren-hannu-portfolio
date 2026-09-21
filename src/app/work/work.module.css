@@ -645,17 +645,18 @@
   font-weight: 650;
   letter-spacing: -0.055em;
   line-height: 1;
-  color: rgb(245 240 232 / 66%);
+  color: var(--color-magenta);
   background: linear-gradient(
-    110deg,
-    rgb(245 240 232 / 72%),
-    rgb(215 210 216 / 48%) 53%,
-    rgb(233 184 255 / 55%) 76%,
-    rgb(245 240 232 / 62%)
+    90deg,
+    rgb(245 240 232 / 65%),
+    rgb(240 43 255 / 90%) 45%,
+    rgb(240 43 255 / 85%) 55%,
+    rgb(180 120 220 / 60%) 80%,
+    rgb(233 184 255 / 50%)
   );
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.5px rgb(245 240 232 / 24%);
+  -webkit-text-stroke: 0.5px rgb(240 43 255 / 20%);
 }
 
 /* ─── Responsive (Tablet) ───────────────────────────────────── */
