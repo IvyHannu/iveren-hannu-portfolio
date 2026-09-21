@@ -28,7 +28,7 @@ const articles: Article[] = [
     summary:
       "Why fast, AI-built features drift without a clear problem statement, and how a lightweight PRD keeps the work aimed at real users.",
     date: "Feb 2026",
-    readingTime: "— min read",
+    readingTime: "6 min read",
     href: "https://medium.com/@ivy.hannu/why-your-vibe-coding-project-failed-and-how-a-prd-could-have-saved-it-90be3be72e4a",
     image: "/vibe-coding-prd.jpg",
   },
@@ -40,7 +40,7 @@ const articles: Article[] = [
     summary:
       "Moving accessibility out of late-stage fixes and into the foundation of a system — semantic tokens, focus states and testing.",
     date: "Jan 2026",
-    readingTime: "— min read",
+    readingTime: "10 min read",
     href: "https://www.designsystemscollective.com/when-accessibility-is-no-longer-just-a-checklist-integrating-wcag-into-design-systems-that-truly-af16f118ac54",
     image: "/wcag-design-systems.jpg",
   },
@@ -51,7 +51,7 @@ const articles: Article[] = [
     summary:
       "A personal case for WCAG: how living with low vision reshaped the way I choose type, colour, contrast and space.",
     date: "Jan 2026",
-    readingTime: "— min read",
+    readingTime: "7 min read",
     href: "https://medium.com/@ivy.hannu/designing-for-clarity-why-wcag-became-essential-in-my-work-fc72ba9d7461",
     image: "/designing-for-clarity.jpg",
   },
@@ -62,7 +62,7 @@ const articles: Article[] = [
     summary:
       "Why colour belongs in the system rather than the screen — semantic tokens, layered naming and restraint over decoration.",
     date: "Dec 2025",
-    readingTime: "— min read",
+    readingTime: "8 min read",
     href: "https://www.designsystemscollective.com/color-as-strategy-building-systems-with-intent-a89c0934983d",
     image: "/color-as-strategy.jpg",
   },
