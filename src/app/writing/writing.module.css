@@ -210,7 +210,6 @@
 
 .preview {
   grid-area: preview;
-  align-self: stretch;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -220,7 +219,6 @@
 
 .previewMedia {
   position: relative;
-  flex: 1;
   min-height: clamp(15rem, 32vh, 23rem);
   overflow: hidden;
   background: var(--color-surface);
@@ -266,6 +264,7 @@
   align-items: flex-start;
   gap: 0.8rem;
   padding: clamp(1rem, 2vw, 1.35rem);
+  padding-bottom: clamp(0.75rem, 1.25vw, 1rem);
 }
 
 .previewCategory {

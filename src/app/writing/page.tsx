@@ -68,8 +68,23 @@ const articles: Article[] = [
   },
 ];
 
-function PreviewImage({ src, alt }: { src: string; alt: string }) {
+function PreviewImage({ src, alt, articleId }: { src: string; alt: string; articleId: string }) {
   const [failed, setFailed] = useState(false);
+
+  const getImageTreatment = (id: string) => {
+    switch (id) {
+      case "vibe-coding-prd":
+        return { objectFit: "cover" as const, objectPosition: "center 20%" };
+      case "wcag-design-systems":
+        return { objectFit: "contain" as const, objectPosition: "center center" };
+      case "designing-for-clarity":
+        return { objectFit: "cover" as const, objectPosition: "center top" };
+      case "color-as-strategy":
+        return { objectFit: "contain" as const, objectPosition: "center top" };
+      default:
+        return { objectFit: "cover" as const, objectPosition: "center" };
+    }
+  };
 
   return (
     <>
@@ -80,6 +95,7 @@ function PreviewImage({ src, alt }: { src: string; alt: string }) {
           fill
           sizes="(max-width: 900px) 100vw, 46vw"
           className={styles.previewImage}
+          style={getImageTreatment(articleId)}
           onError={() => setFailed(true)}
         />
       )}
@@ -94,11 +110,17 @@ function PreviewImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function ArticlePreview({ article }: { article: Article }) {
+function ArticlePreview({ article, desktop = false }: { article: Article; desktop?: boolean }) {
   return (
-    <div className={styles.preview} role="region" aria-labelledby={`tab-${article.id}`}>
+    <div
+      className={styles.preview}
+      role={desktop ? "tabpanel" : "region"}
+      id={desktop ? "panel-writing-article" : undefined}
+      aria-labelledby={`tab-${article.id}`}
+      tabIndex={desktop ? 0 : undefined}
+    >
       <div className={styles.previewMedia}>
-        <PreviewImage key={article.id} src={article.image} alt={`${article.title} cover`} />
+        <PreviewImage key={article.id} src={article.image} alt={`${article.title} cover`} articleId={article.id} />
         <span className={styles.previewHint}>
           <span className={styles.hintHover}>Hover to preview</span>
           <span className={styles.hintTouch}>Tap to preview</span>
@@ -284,15 +306,7 @@ export default function WritingPage() {
                 </span>
               </Link>
 
-              <div
-                className={styles.preview}
-                role="tabpanel"
-                id="panel-writing-article"
-                aria-labelledby={`tab-${active.id}`}
-                tabIndex={0}
-              >
-                <ArticlePreview article={active} />
-              </div>
+              <ArticlePreview article={active} desktop />
             </>
           )}
         </div>

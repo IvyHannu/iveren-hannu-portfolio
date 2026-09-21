@@ -5,11 +5,6 @@ import Image from "next/image";
 import SiteHeader from "../../components/SiteHeader";
 import styles from "./about.module.css";
 
-const phraseGroups = [
-  ["People", "Ideas", "Systems", "A Brighter Tomorrow"],
-  ["Design", "Builds", "Bridges"],
-];
-
 const careerPath = [
   "Theatre Arts",
   "Operations",
@@ -19,9 +14,10 @@ const careerPath = [
 ];
 
 const story = [
-  "I’m Iveren Hannu, a UI/UX and Product Designer creating clear, accessible digital experiences across web and mobile.",
-  "My path through operations and project management taught me to work with constraints, people and delivery, not just screens.",
-  "Today, I combine product design with AI assisted development to move ideas closer to working products.",
+  "I didn’t arrive in product design through a straight line. I came through Theatre Arts, operations, telecoms and project management. Different rooms, but the same questions kept following me: Who is this for? What are they trying to do? Where does the process break down? How do we make it clearer?",
+  "Theatre Arts taught me to pay attention to people, communication and experience. Operations and telecoms taught me about systems, customers, constraints, targets and coordination. Project management sharpened how I think about structure, requirements, stakeholders and delivery.",
+  "Design gave me a visual and product language for all of that. Today, I work across UI/UX and product design, with a particular interest in clarity, accessibility, predictability, trust and making complex journeys easier to understand.",
+  "I’m also increasingly interested in what happens after the prototype. AI-assisted development lets me stay closer to implementation, test design decisions in working products and carry ideas further without pretending to be a software engineer.",
 ];
 
 function Portrait() {
@@ -32,7 +28,7 @@ function Portrait() {
       {!failed && (
         <Image
           src="/iveren-hannu.jpg"
-          alt="Portrait of Iveren Hannu"
+          alt="Portrait of Iveren I. Hannu"
           fill
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 80vw, 36vw"
           className={styles.portraitImage}
@@ -62,7 +58,7 @@ export default function AboutPage() {
       <div className={styles.content}>
         <section className={styles.hero} aria-labelledby="about-heading">
           <div className={styles.left}>
-            <p className={styles.label}>About / Iveren Hannu</p>
+            <p className={styles.label}>About / IVEREN I. HANNU</p>
             <h1 id="about-heading" className={styles.headline}>
               <span className={styles.headlineLine}>I design with clarity.</span>
               <span className={styles.headlineLine}>
@@ -78,16 +74,6 @@ export default function AboutPage() {
           </div>
 
           <div className={styles.right}>
-            <div className={styles.phrases}>
-              {phraseGroups.map((group) => (
-                <ul key={group[0]} className={styles.phraseGroup}>
-                  {group.map((phrase) => (
-                    <li key={phrase}>{phrase}</li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-
             <Portrait />
           </div>
         </section>

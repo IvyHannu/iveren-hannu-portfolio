@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import SiteHeader from "../components/SiteHeader";
+import HomeArtwork from "./HomeArtwork";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -31,19 +31,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className={styles.artwork} aria-hidden="true">
-          <div className={styles.artworkMotion}>
-            <Image
-              className={styles.heroImage}
-              src="/hero-ribbon-butterflies.png"
-              alt=""
-              width={1536}
-              height={1024}
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 960px) 84vw, 82vw"
-            />
-          </div>
-        </div>
+        <HomeArtwork />
 
         <p className={styles.tagline}>Think. Design. Build.</p>
       </section>

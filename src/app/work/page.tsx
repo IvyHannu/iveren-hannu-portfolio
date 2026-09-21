@@ -26,7 +26,6 @@ type Client = {
   type: string;
   image: string;
   href: string | null;
-  wide?: boolean;
 };
 
 const projects: Project[] = [
@@ -35,7 +34,7 @@ const projects: Project[] = [
     title: "Bus Lotus",
     role: "Product Design · UX Research · Prototype · AI Assisted Build",
     year: "2026",
-    image: "/work/bus-lotus.jpg",
+    image: "/bus-lotus.jpg",
     links: [
       {
         label: "View Case Study",
@@ -49,7 +48,7 @@ const projects: Project[] = [
     title: "FGCJ Y2K",
     role: "Product Design · Information Architecture · Website Build",
     year: "2026",
-    image: "/work/fgcj-y2k.jpg",
+    image: "/fgcj-y2k.jpg",
     links: [
       {
         label: "View Case Study",
@@ -63,7 +62,7 @@ const projects: Project[] = [
     title: "Tuella AI",
     role: "Product Design · UX Research · AI Product Concept",
     year: "2026",
-    image: "/work/tuella-ai.jpg",
+    image: "/tuella-ai.jpg",
     links: [
       {
         label: "View Case Study",
@@ -78,56 +77,59 @@ const clients: Client[] = [
     name: "Health Track",
     role: "Product design + build",
     type: "Patient dashboard",
-    image: "/work/health-track.jpg",
+    image: "/health-track.jpg",
     href: "https://www.behance.net/gallery/241939155/Health-Track-Patient-Dashboard",
-  },
-  {
-    name: "Shadhin",
-    role: "UX research + product design",
-    type: "Mobile app",
-    image: "/work/shadhin.jpg",
-    href: null,
   },
   {
     name: "AIW Africa",
     role: "Product design + build",
     type: "Organisation website",
-    image: "/work/aiw-africa.jpg",
+    image: "/aiw-africa.jpg",
     href: "https://aiw.africa/",
   },
   {
     name: "Dija",
     role: "Product design",
     type: "Website",
-    image: "/work/dija.jpg",
+    image: "/dija.jpg",
     href: "https://dijadontneedya.com/",
-  },
-  {
-    name: "MSME Forum Africa",
-    role: "Product design + build",
-    type: "Website",
-    image: "/work/msme-forum.jpg",
-    href: "https://msmeforum.africa/",
   },
   {
     name: "Spotify Paradox",
     role: "Concept + design",
     type: "Case study",
-    image: "/work/spotify-paradox.jpg",
+    image: "/spotify-paradox.jpg",
     href: "https://www.behance.net/gallery/252301019/The-Spotify-Paradox",
   },
   {
     name: "Superhost Management",
     role: "Website Design + Build",
     type: "Hospitality · Property Management",
-    image: "/work/superhost-management.jpg",
-    href: "https://superhostmgmt.com/",
-    wide: true,
+    image: "/superhost-management.jpg",
+    href: null,
+  },
+  {
+    name: "Shadhin",
+    role: "UX research + product design",
+    type: "Mobile app",
+    image: "/Shadhin.png",
+    href: "https://play.google.com/store/apps/details?id=com.gm.shadhin&hl=en",
   },
 ];
 
 function ProjectMedia({ project }: { project: Project }) {
   const [failed, setFailed] = useState(false);
+
+  const getLeadProjectObjectPosition = (title: string) => {
+    switch (title) {
+      case "Bus Lotus":
+        return "center 30%";
+      case "Tuella AI":
+        return "center 35%";
+      default:
+        return "center";
+    }
+  };
 
   return (
     <div className={styles.media}>
@@ -138,6 +140,7 @@ function ProjectMedia({ project }: { project: Project }) {
           fill
           sizes="(max-width: 900px) 100vw, 62vw"
           className={styles.mediaImage}
+          style={{ objectPosition: getLeadProjectObjectPosition(project.title) }}
           onError={() => setFailed(true)}
         />
       )}
@@ -195,7 +198,36 @@ function ProjectStage({ project }: { project: Project }) {
 
 function ClientCard({ client }: { client: Client }) {
   const [failed, setFailed] = useState(false);
-  const pending = client.href === null;
+  const isSuperhost = client.name === "Superhost Management";
+  const pending = client.href === null && !isSuperhost;
+
+  const getObjectPosition = (name: string) => {
+    switch (name) {
+      case "AIW Africa":
+        return "center 0%";
+      case "Dija":
+        return "center 0%";
+      case "Superhost Management":
+        return "center 0%";
+      default:
+        return "center";
+    }
+  };
+
+  const getLinkLabel = (name: string) => {
+    if (name === "Shadhin") return "VIEW ON GOOGLE PLAY";
+    if (name === "Superhost Management") return "VIEW ARCHIVED PROJECT";
+    return "Link pending";
+  };
+
+  const getLinkHref = (name: string) => {
+    if (name === "Superhost Management") return "/work/superhost-management";
+    return client.href as string;
+  };
+
+  const isInternalLink = (name: string) => {
+    return name === "Superhost Management";
+  };
 
   const body = (
     <>
@@ -205,12 +237,9 @@ function ClientCard({ client }: { client: Client }) {
             src={client.image}
             alt={`${client.name} preview`}
             fill
-            sizes={
-              client.wide
-                ? "(max-width: 600px) 100vw, (max-width: 900px) 100vw, 66vw"
-                : "(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-            }
+            sizes="(max-width: 900px) 100vw, 50vw"
             className={styles.cardImage}
+            style={{ objectPosition: getObjectPosition(client.name) }}
             onError={() => setFailed(true)}
           />
         )}
@@ -236,7 +265,8 @@ function ClientCard({ client }: { client: Client }) {
         </div>
         <p className={styles.cardRole}>{client.role}</p>
         <p className={styles.cardType}>{client.type}</p>
-        {pending && <span className={styles.cardPending}>Link pending</span>}
+        {pending && <span className={styles.cardPending}>{getLinkLabel(client.name)} ↗</span>}
+        {isSuperhost && <span className={styles.cardPending}>{getLinkLabel(client.name)} ↗</span>}
       </div>
     </>
   );
@@ -245,13 +275,16 @@ function ClientCard({ client }: { client: Client }) {
     return <div className={styles.card}>{body}</div>;
   }
 
+  const linkHref = getLinkHref(client.name);
+  const isInternal = isInternalLink(client.name);
+
   return (
     <Link
       className={styles.card}
-      href={client.href as string}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={`${client.name} — ${client.type} (opens in a new tab)`}
+      href={linkHref}
+      target={isInternal ? undefined : "_blank"}
+      rel={isInternal ? undefined : "noreferrer"}
+      aria-label={`${client.name} — ${client.type}${isInternal ? " (archived project)" : " (opens in a new tab)"}`}
     >
       {body}
     </Link>
@@ -390,43 +423,38 @@ export default function WorkPage() {
         <section className={styles.clients} aria-labelledby="clients-heading">
           <div className={styles.sectionHead}>
             <h2 id="clients-heading" className={styles.sectionTitle}>
-              Selected Client + Shipped Work
+              Selected Client + Product Work
             </h2>
           </div>
           <ul className={styles.clientGrid}>
             {clients.map((client) => (
-              <li
-                key={client.name}
-                className={`${styles.clientItem}${
-                  client.wide ? ` ${styles.clientItemWide}` : ""
-                }`}
-              >
+              <li key={client.name} className={styles.clientItem}>
                 <ClientCard client={client} />
               </li>
             ))}
-            <li className={`${styles.clientItem} ${styles.archiveItem}`}>
-              <Link
-                className={styles.archivePanel}
-                href="https://www.behance.net/ivyhannu03"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="More work lives on Behance — explore the wider archive (opens in a new tab)"
-              >
-                <span className={styles.archiveKicker}>
-                  More Work Lives on Behance
-                </span>
-                <span className={styles.archiveTitle}>
-                  Explore the wider archive
-                </span>
-                <span className={styles.archiveHandle}>
-                  behance.net/ivyhannu03
-                  <span className={styles.archiveArrow} aria-hidden="true">
-                    ↗
-                  </span>
-                </span>
-              </Link>
-            </li>
           </ul>
+          <Link
+            className={styles.archivePanel}
+            href="https://www.behance.net/ivyhannu03"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="More work lives on Behance — explore the wider archive (opens in a new tab)"
+          >
+            <div className={styles.archiveContent}>
+              <span className={styles.archiveKicker}>
+                More Work Lives on Behance
+              </span>
+              <span className={styles.archiveTitle}>
+                Explore the wider archive
+              </span>
+            </div>
+            <span className={styles.archiveHandle}>
+              behance.net/ivyhannu03
+              <span className={styles.archiveArrow} aria-hidden="true">
+                ↗
+              </span>
+            </span>
+          </Link>
         </section>
       </div>
 
@@ -443,7 +471,7 @@ export default function WorkPage() {
           </div>
         </div>
         <div className={styles.wordmarkWrap} aria-hidden="true">
-          <span className={styles.wordmark}>IVEREN HANNU</span>
+          <span className={styles.wordmark}>IVEREN I. HANNU</span>
         </div>
       </footer>
     </main>

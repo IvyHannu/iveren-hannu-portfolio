@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import SiteHeader from "../../components/SiteHeader";
 import styles from "./contact.module.css";
 
@@ -13,28 +14,44 @@ const socials = [
 
 const butterflies = [
   {
-    x: 55,
-    y: 22,
-    size: 20,
-    rotate: -32,
+    x: 24,
+    y: 16,
+    size: 14,
+    rotate: -28,
+    delay: 780,
+    duration: 14,
+    drift: 9,
+    tilt: 5,
   },
   {
-    x: 78,
-    y: 15,
-    size: 16,
-    rotate: -12,
+    x: 38,
+    y: 30,
+    size: 21,
+    rotate: -18,
+    delay: 520,
+    duration: 12.5,
+    drift: 11,
+    tilt: 4,
   },
   {
-    x: 88,
-    y: 48,
-    size: 30,
-    rotate: -6,
+    x: 58,
+    y: 51,
+    size: 29,
+    rotate: -10,
+    delay: 260,
+    duration: 11,
+    drift: 13,
+    tilt: 3.5,
   },
   {
-    x: 65,
-    y: 68,
-    size: 38,
-    rotate: -22,
+    x: 79,
+    y: 75,
+    size: 46,
+    rotate: -4,
+    delay: 0,
+    duration: 9.5,
+    drift: 16,
+    tilt: 2.5,
   },
 ];
 
@@ -111,10 +128,15 @@ function ButterflyCluster() {
               "--y": `${butterfly.y}%`,
               "--size": `${butterfly.size}%`,
               "--base-rotate": `${butterfly.rotate}deg`,
-            } as React.CSSProperties
+              "--float-duration": `${butterfly.duration}s`,
+              "--float-delay": `${butterfly.delay}ms`,
+              "--drift": `${butterfly.drift}px`,
+              "--tilt": `${butterfly.tilt}deg`,
+              "--in-delay": `${butterfly.delay}ms`,
+            } as CSSProperties
           }
         >
-          <span className={styles.butterflyInner}>
+          <span className={styles.butterflyFloat}>
             <Butterfly index={index} />
           </span>
         </span>
