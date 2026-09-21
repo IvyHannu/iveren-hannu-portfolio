@@ -314,6 +314,11 @@
   height: 50px;
 }
 
+.pathIcon svg path:last-child,
+.pathIcon svg line:last-child {
+  stroke: var(--color-magenta);
+}
+
 .pathAccent {
   width: 7px;
   height: 7px;
