@@ -314,32 +314,29 @@
   height: 50px;
 }
 
-/* Drama: one mask face magenta */
-.pathIcon svg path:nth-child(7) {
+/* Drama: tiny facial detail accent */
+.pathIcon svg path:nth-child(8) {
   stroke: var(--color-magenta);
 }
 
-/* Users: second person magenta */
-.pathIcon svg path:nth-child(3),
+/* Users: one small head accent */
 .pathIcon svg circle {
   stroke: var(--color-magenta);
 }
 
-/* Clipboard-list: dots magenta */
+/* Clipboard-list: checklist dots */
 .pathIcon svg path:nth-child(5),
 .pathIcon svg path:nth-child(6) {
   stroke: var(--color-magenta);
 }
 
-/* Monitor: stand magenta */
-.pathIcon svg line:nth-child(3) {
+/* Monitor: tiny base accent */
+.pathIcon svg line:nth-child(2) {
   stroke: var(--color-magenta);
 }
 
-/* Boxes: one box magenta */
-.pathIcon svg path:nth-child(7),
-.pathIcon svg path:nth-child(8),
-.pathIcon svg path:nth-child(9) {
+/* Boxes: one connector accent (strongest — final stage) */
+.pathIcon svg path:nth-child(12) {
   stroke: var(--color-magenta);
 }
 
