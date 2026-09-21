@@ -14,7 +14,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Iveren Hannu | Product Designer",
+  title: "Iveren I. Hannu | Product Designer",
   description:
     "Product designer creating clear digital products and helping bring them to life.",
 };

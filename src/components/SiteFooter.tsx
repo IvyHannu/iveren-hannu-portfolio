@@ -16,7 +16,7 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className={styles.wordmarkWrap} aria-hidden="true">
-        <span className={styles.wordmark}>IVEREN HANNU</span>
+        <span className={styles.wordmark}>IVEREN I. HANNU</span>
       </div>
     </footer>
   );

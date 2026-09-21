@@ -56,9 +56,9 @@ export default function SiteHeader() {
       <Link
         className={styles.identity}
         href="/"
-        aria-label="Iveren Hannu, home"
+        aria-label="Iveren I. Hannu, home"
       >
-        Iveren Hannu
+        Iveren I. Hannu
       </Link>
 
       <nav
