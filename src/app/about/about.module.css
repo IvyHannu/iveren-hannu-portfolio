@@ -336,14 +336,7 @@
 }
 
 /* Boxes: active/current stage — strong magenta presence */
-.pathIcon svg path:nth-child(6),
-.pathIcon svg path:nth-child(7),
-.pathIcon svg path:nth-child(8),
-.pathIcon svg path:nth-child(9),
-.pathIcon svg path:nth-child(10),
-.pathIcon svg path:nth-child(11),
-.pathIcon svg path:nth-child(12),
-.pathIcon svg path:nth-child(13) {
+.pathStage:last-child .pathIcon svg path {
   stroke: var(--color-magenta);
 }
 
