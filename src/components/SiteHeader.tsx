@@ -86,13 +86,14 @@ export default function SiteHeader() {
             );
           })}
           <li>
-            <Link
+            <a
               href={resumeLink.href}
               target="_blank"
               rel="noreferrer"
+              className={styles.resumeButton}
             >
               {resumeLink.label} <span aria-hidden="true">↗</span>
-            </Link>
+            </a>
           </li>
         </ul>
       </nav>
@@ -147,14 +148,15 @@ export default function SiteHeader() {
                 );
               })}
               <li>
-                <Link
+                <a
                   href={resumeLink.href}
                   target="_blank"
                   rel="noreferrer"
+                  className={styles.resumeButton}
                   onClick={() => setMenuOpen(false)}
                 >
                   {resumeLink.label} <span aria-hidden="true">↗</span>
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
