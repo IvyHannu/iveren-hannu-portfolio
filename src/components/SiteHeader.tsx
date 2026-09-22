@@ -13,6 +13,11 @@ const navigation = [
   ["Contact", "/contact"],
 ] as const;
 
+const resumeLink = {
+  label: "Resume",
+  href: "/Iveren Hannu Design Resume.pdf",
+} as const;
+
 export default function SiteHeader() {
   const pathname = usePathname();
 
@@ -80,6 +85,15 @@ export default function SiteHeader() {
               </li>
             );
           })}
+          <li>
+            <Link
+              href={resumeLink.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {resumeLink.label} <span aria-hidden="true">↗</span>
+            </Link>
+          </li>
         </ul>
       </nav>
 
@@ -132,6 +146,16 @@ export default function SiteHeader() {
                   </li>
                 );
               })}
+              <li>
+                <Link
+                  href={resumeLink.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {resumeLink.label} <span aria-hidden="true">↗</span>
+                </Link>
+              </li>
             </ul>
           </div>
         )}

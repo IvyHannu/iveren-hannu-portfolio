@@ -109,6 +109,13 @@ const clients: Client[] = [
     href: null,
   },
   {
+    name: "BlueGrid",
+    role: "Product Design + Build",
+    type: "Dashboard · Data Platform",
+    image: "/bluegrid.jpg",
+    href: null,
+  },
+  {
     name: "Shadhin",
     role: "UX research + product design",
     type: "Mobile app",
@@ -199,7 +206,8 @@ function ProjectStage({ project }: { project: Project }) {
 function ClientCard({ client }: { client: Client }) {
   const [failed, setFailed] = useState(false);
   const isSuperhost = client.name === "Superhost Management";
-  const pending = client.href === null && !isSuperhost;
+  const isBlueGrid = client.name === "BlueGrid";
+  const pending = client.href === null && !isSuperhost && !isBlueGrid;
 
   const getObjectPosition = (name: string) => {
     switch (name) {
@@ -217,16 +225,18 @@ function ClientCard({ client }: { client: Client }) {
   const getLinkLabel = (name: string) => {
     if (name === "Shadhin") return "VIEW ON GOOGLE PLAY";
     if (name === "Superhost Management") return "VIEW ARCHIVED PROJECT";
+    if (name === "BlueGrid") return "VIEW PROJECT";
     return "Link pending";
   };
 
   const getLinkHref = (name: string) => {
     if (name === "Superhost Management") return "/work/superhost-management";
+    if (name === "BlueGrid") return "/work/bluegrid";
     return client.href as string;
   };
 
   const isInternalLink = (name: string) => {
-    return name === "Superhost Management";
+    return name === "Superhost Management" || name === "BlueGrid";
   };
 
   const body = (
@@ -267,6 +277,7 @@ function ClientCard({ client }: { client: Client }) {
         <p className={styles.cardType}>{client.type}</p>
         {pending && <span className={styles.cardPending}>{getLinkLabel(client.name)} ↗</span>}
         {isSuperhost && <span className={styles.cardPending}>{getLinkLabel(client.name)} ↗</span>}
+        {isBlueGrid && <span className={styles.cardPending}>{getLinkLabel(client.name)} ↗</span>}
       </div>
     </>
   );
