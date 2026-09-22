@@ -44,7 +44,7 @@ export default function BlueGridArchivePage() {
           </p>
           <Link
             className={styles.visitLink}
-            href="https://bluegrid-five.vercel.app/"
+            href="https://bluegrid-blue.vercel.app/"
             target="_blank"
             rel="noreferrer"
           >
