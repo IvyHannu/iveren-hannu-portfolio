@@ -217,6 +217,8 @@ function ClientCard({ client }: { client: Client }) {
         return "center 0%";
       case "Superhost Management":
         return "center 0%";
+      case "BlueGrid":
+        return "center 20%";
       default:
         return "center";
     }
@@ -248,7 +250,7 @@ function ClientCard({ client }: { client: Client }) {
             alt={`${client.name} preview`}
             fill
             sizes="(max-width: 900px) 100vw, 50vw"
-            className={isBlueGrid ? styles.cardImageBlueGrid : styles.cardImage}
+            className={styles.cardImage}
             style={{ objectPosition: getObjectPosition(client.name) }}
             onError={() => setFailed(true)}
           />
