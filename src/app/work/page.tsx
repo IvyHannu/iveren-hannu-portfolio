@@ -248,7 +248,7 @@ function ClientCard({ client }: { client: Client }) {
             alt={`${client.name} preview`}
             fill
             sizes="(max-width: 900px) 100vw, 50vw"
-            className={styles.cardImage}
+            className={isBlueGrid ? styles.cardImageBlueGrid : styles.cardImage}
             style={{ objectPosition: getObjectPosition(client.name) }}
             onError={() => setFailed(true)}
           />
