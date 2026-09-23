@@ -112,7 +112,7 @@ const clients: Client[] = [
     name: "BlueGrid",
     role: "Product Design + Build",
     type: "Dashboard · Data Platform",
-    image: "/bluegrid.png",
+    image: "/bluegrid-4x3.png",
     href: null,
   },
   {
