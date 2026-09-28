@@ -218,7 +218,7 @@ function ClientCard({ client }: { client: Client }) {
       case "Superhost Management":
         return "center 0%";
       case "BlueGrid":
-        return "center";
+        return "center 20%";
       default:
         return "center";
     }
