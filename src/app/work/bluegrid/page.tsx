@@ -38,17 +38,77 @@ export default function BlueGridArchivePage() {
           </div>
         </dl>
 
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Project overview</h2>
+          <p className={styles.sectionText}>
+            BlueGrid needed a unified dashboard and data platform to replace fragmented tools. The goal: give operators and stakeholders a single, clear view of grid assets, performance, and alerts — without overwhelming density.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>My role</h2>
+          <p className={styles.sectionText}>
+            End-to-end product design and front-end build. Owned UX strategy, information architecture, UI system, and shipped production code (Next.js + TypeScript + Tailwind).
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>The problem</h2>
+          <p className={styles.sectionText}>
+            Operators juggled spreadsheets, legacy portals, and manual reports. Critical data was buried, alerting was noisy, and no single view existed for real-time decision-making. Stakeholders lacked confidence in the numbers.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>What I designed</h2>
+          <ul className={styles.bulletList}>
+            <li>Information architecture for multi-tenant dashboard with role-based views</li>
+            <li>Real-time asset map with clustered markers and drill-down detail panels</li>
+            <li>Alert centre with severity tiers, acknowledgment flows, and escalation paths</li>
+            <li>Analytics workspace: custom date ranges, comparison views, exportable reports</li>
+            <li>Design system: tokens, components, dark mode, motion guidelines</li>
+          </ul>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Design focus</h2>
+          <p className={styles.sectionText}>
+            Clarity at density. Used progressive disclosure, consistent visual hierarchy, and purposeful colour (semantic, not decorative) so operators scan fast and act faster. Dark mode first — reduces eye strain in control-room environments.
+          </p>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Selected screens</h2>
+          <div className={styles.screenGrid}>
+            <figure className={styles.screen}>
+              <img src="/bluegrid.png" alt="BlueGrid dashboard overview" />
+              <figcaption>Dashboard overview</figcaption>
+            </figure>
+            <figure className={styles.screen}>
+              <img src="/BlueGrid cover image.png" alt="BlueGrid asset map view" />
+              <figcaption>Asset map with clustering</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Product + Build note</h2>
+          <p className={styles.sectionText}>
+            Designed in Figma, built in Next.js 14 (App Router) with TypeScript, Tailwind, and Recharts. Components are fully typed, tested, and deployed on Vercel with preview deployments for every PR. Design tokens sync from Figma → code via Style Dictionary.
+          </p>
+        </section>
+
         <div className={styles.visitPanel}>
           <p className={styles.visitText}>
-            View the live BlueGrid application.
+            Explore the live BlueGrid application.
           </p>
           <Link
             className={styles.visitLink}
-            href="https://bluegrid-blue.vercel.app/"
+            href="https://bluegrid-five.vercel.app/"
             target="_blank"
             rel="noreferrer"
           >
-            Visit BlueGrid
+            Explore BlueGrid
             <span className={styles.visitArrow} aria-hidden="true">
               ↗
             </span>

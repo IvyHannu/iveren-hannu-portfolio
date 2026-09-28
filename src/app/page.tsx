@@ -13,12 +13,9 @@ export default function Home() {
         <div className={styles.intro}>
           <p className={styles.eyebrow}>Product Designer · UI/UX + Build</p>
 
-          <h1 id="home-heading" className={styles.heading}>
-            <span className={styles.headingLine}>I don’t hand off</span>
-            <span className={styles.headingLine}>designs.</span>
-            <span className={styles.headingLine}>
-              I finish them<span className={styles.period}>.</span>
-            </span>
+<h1 id="home-heading" className={styles.heading}>
+            <span className={styles.headingLine}>I turn complexity</span>
+            <span className={styles.headingLine}>into clarity.</span>
           </h1>
 
           <p className={styles.summary}>
