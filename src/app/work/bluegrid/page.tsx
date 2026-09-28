@@ -14,93 +14,75 @@ export default function BlueGridArchivePage() {
           <p className={styles.eyebrow}>COMPLETED PROJECT · PRODUCT DESIGN + BUILD</p>
           <h1 className={styles.title}>BlueGrid</h1>
           <p className={styles.description}>
-            A dashboard and data platform designed and built for BlueGrid.
+            Water Infrastructure · Field Survey Platform
+          </p>
+          <p className={styles.description}>
+            Completed · Live Prototype
           </p>
           <span className={styles.status}>COMPLETED · LIVE</span>
         </header>
 
         <dl className={styles.meta}>
           <div className={styles.metaRow}>
-            <dt>PROJECT</dt>
-            <dd>BlueGrid</dd>
-          </div>
-          <div className={styles.metaRow}>
             <dt>ROLE</dt>
-            <dd>Product Design + Build</dd>
+            <dd>Product Design · UX/UI · AI-assisted Development</dd>
           </div>
           <div className={styles.metaRow}>
             <dt>TYPE</dt>
-            <dd>Dashboard · Data Platform</dd>
+            <dd>Field Survey Platform</dd>
           </div>
           <div className={styles.metaRow}>
             <dt>STATUS</dt>
-            <dd>Completed · Live</dd>
+            <dd>Completed · Live Prototype</dd>
           </div>
         </dl>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Project overview</h2>
+          <h2 className={styles.sectionTitle}>Overview</h2>
           <p className={styles.sectionText}>
-            BlueGrid needed a unified dashboard and data platform to replace fragmented tools. The goal: give operators and stakeholders a single, clear view of grid assets, performance, and alerts — without overwhelming density.
+            BlueGrid is a field survey platform designed to make water infrastructure data collection clearer, more structured, and easier to complete in the field.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>My role</h2>
+          <h2 className={styles.sectionTitle}>The Problem</h2>
           <p className={styles.sectionText}>
-            End-to-end product design and front-end build. Owned UX strategy, information architecture, UI system, and shipped production code (Next.js + TypeScript + Tailwind).
+            Field surveys involve complex information, conditional questions, validation, location data, and interrupted submissions. The challenge was making the process clear without removing important information.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>The problem</h2>
-          <p className={styles.sectionText}>
-            Operators juggled spreadsheets, legacy portals, and manual reports. Critical data was buried, alerting was noisy, and no single view existed for real-time decision-making. Stakeholders lacked confidence in the numbers.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>What I designed</h2>
+          <h2 className={styles.sectionTitle}>What I Designed</h2>
           <ul className={styles.bulletList}>
-            <li>Information architecture for multi-tenant dashboard with role-based views</li>
-            <li>Real-time asset map with clustered markers and drill-down detail panels</li>
-            <li>Alert centre with severity tiers, acknowledgment flows, and escalation paths</li>
-            <li>Analytics workspace: custom date ranges, comparison views, exportable reports</li>
-            <li>Design system: tokens, components, dark mode, motion guidelines</li>
+            <li>Structured questionnaire</li>
+            <li>Conditional/skip logic</li>
+            <li>Validation and error handling</li>
+            <li>Review-before-submit flow</li>
+            <li>Offline/pending-sync states</li>
+            <li>Field and survey IDs</li>
+            <li>GPS/location information</li>
+            <li>Submission feedback</li>
+            <li>Accessible interaction patterns</li>
           </ul>
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Design focus</h2>
+          <h2 className={styles.sectionTitle}>Design Focus</h2>
           <p className={styles.sectionText}>
-            Clarity at density. Used progressive disclosure, consistent visual hierarchy, and purposeful colour (semantic, not decorative) so operators scan fast and act faster. Dark mode first — reduces eye strain in control-room environments.
+            Precision without unnecessary complexity. Clear hierarchy, predictable interactions, progressive disclosure, validation, and meaningful feedback.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Selected screens</h2>
-          <div className={styles.screenGrid}>
-            <figure className={styles.screen}>
-              <img src="/bluegrid.png" alt="BlueGrid dashboard overview" />
-              <figcaption>Dashboard overview</figcaption>
-            </figure>
-            <figure className={styles.screen}>
-              <img src="/BlueGrid cover image.png" alt="BlueGrid asset map view" />
-              <figcaption>Asset map with clustering</figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Product + Build note</h2>
+          <h2 className={styles.sectionTitle}>Product + Build</h2>
           <p className={styles.sectionText}>
-            Designed in Figma, built in Next.js 14 (App Router) with TypeScript, Tailwind, and Recharts. Components are fully typed, tested, and deployed on Vercel with preview deployments for every PR. Design tokens sync from Figma → code via Style Dictionary.
+            Designed in Figma and brought to life as a working prototype through AI-assisted development. I directed the implementation, tested the experience, corrected issues, and made the final product decisions.
           </p>
         </section>
 
         <div className={styles.visitPanel}>
           <p className={styles.visitText}>
-            Explore the live BlueGrid application.
+            Explore the live BlueGrid prototype.
           </p>
           <Link
             className={styles.visitLink}
