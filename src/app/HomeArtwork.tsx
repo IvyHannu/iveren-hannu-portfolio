@@ -9,47 +9,47 @@ const butterflies = [
   {
     src: "/butterfly-emblem.png",
     className: styles.butterflyOne,
-    x: [0, 2, -1, 0],
-    y: [0, -4, 2, 0],
-    rotate: [0, 0.25, -0.2, 0],
-    timing: [14.2, 16.8, 18.4],
-    phase: 2.1,
+    x: [0, 4, -3, 0],
+    y: [0, -6, 4, 0],
+    rotate: [0, 0.4, -0.35, 0],
+    timing: [18.4, 21.6, 24.2],
+    phase: 3.2,
   },
   {
     src: "/butterfly-line-art.png",
     className: styles.butterflyTwo,
-    x: [0, -2, 1, 0],
-    y: [0, 3, -4, 0],
-    rotate: [0, -0.25, 0.3, 0],
-    timing: [12.6, 15.1, 17.3],
-    phase: 5.3,
+    x: [0, -4, 3, 0],
+    y: [0, 5, -6, 0],
+    rotate: [0, -0.4, 0.45, 0],
+    timing: [16.8, 19.4, 22.1],
+    phase: 7.8,
   },
   {
     src: "/butterfly-sticker.png",
     className: styles.butterflyThree,
-    x: [0, 2, -2, 0],
-    y: [0, -3, 3, 0],
-    rotate: [0, 0.3, -0.25, 0],
-    timing: [11.4, 13.8, 16.2],
-    phase: 3.7,
+    x: [0, 3, -4, 0],
+    y: [0, -5, 5, 0],
+    rotate: [0, 0.45, -0.4, 0],
+    timing: [15.2, 17.8, 20.6],
+    phase: 5.4,
   },
   {
     src: "/butterfly-ribbon.png",
     className: styles.butterflyFour,
-    x: [0, -1, 2, 0],
-    y: [0, 3, -2, 0],
-    rotate: [0, -0.35, 0.2, 0],
-    timing: [10.9, 12.7, 15.6],
-    phase: 7.2,
+    x: [0, -3, 4, 0],
+    y: [0, 4, -5, 0],
+    rotate: [0, -0.5, 0.35, 0],
+    timing: [14.6, 16.8, 19.8],
+    phase: 10.1,
   },
   {
     src: "/hero-butterfly-cluster.png",
     className: styles.butterflyFive,
-    x: [0, 2, -1, 0],
-    y: [0, -3, 4, 0],
-    rotate: [0, 0.2, -0.3, 0],
-    timing: [13.2, 15.7, 17.9],
-    phase: 9.4,
+    x: [0, 4, -2, 0],
+    y: [0, -5, 6, 0],
+    rotate: [0, 0.35, -0.45, 0],
+    timing: [17.2, 19.8, 22.8],
+    phase: 12.8,
   },
 ] as const;
 
@@ -65,9 +65,9 @@ export default function HomeArtwork() {
             animate={
               reducedMotion
                 ? { x: 0, y: 0, rotate: 0 }
-                : { x: [0, 2, -1, 0], y: [0, -4, 4, 0], rotate: [0, 0.2, -0.25, 0] }
+                : { x: [0, 3, -2, 0], y: [0, -5, 6, 0], rotate: [0, 0.3, -0.35, 0] }
             }
-            transition={{ duration: 13.4, ease: "easeInOut", repeat: Infinity }}
+            transition={{ duration: 16.8, ease: "easeInOut", repeat: Infinity }}
           >
             <Image
               className={styles.layerImage}
